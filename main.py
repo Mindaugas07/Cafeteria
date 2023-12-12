@@ -21,6 +21,15 @@ class Table:
         self.capacity: str = capacity
         self.availability: bool = availability
 
+    def is_available(self) -> bool:
+        pass
+
+    def mark_available(self) -> bool:
+        pass
+
+    def mark_unavailable(self) -> bool:
+        pass
+
 
 class Reservation:
     def __init__(
@@ -30,3 +39,9 @@ class Reservation:
         self.party_size: int = party_size
         self.reservation_time: str = reservation_time
         self.table_id: str = table_id
+
+    def calculate_total(self) -> float:
+        pass
+
+    def print_reservation(self) -> str:
+        pass
