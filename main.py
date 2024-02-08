@@ -42,23 +42,21 @@ Drinks: {self.menu['drinks']}
         Restaurant.TABLE_LIST.append(self.new_table)
 
     def list_tables(self) -> None:
-        # for self.table in Restaurant.TABLE_LIST:
-        #     print(self.table)
         return Restaurant.TABLE_LIST
 
-    def reserve_table(self, table_number: int) -> None:
+    def reserve_table(self, table_id: int) -> None:
         for self.table in Restaurant.TABLE_LIST:
-            print(self.table)
-        print(self.list_tables()[0].mark_unavailable())
-        for self.table in Restaurant.TABLE_LIST:
-            print(self.table)
-        # if list_tables().self.table_number
-        # if self.table.table_number.is_available():
-        #     self.table.table_number.mark_unavailable()9
+            if table_id == int(self.table.table_number):
+                self.table.mark_unavailable()
 
-        # for self.table in Restaurant.TABLE_LIST:
-        #     if table_id == int(self.table.table_number):
-        #         self.table.availability = False
+    def available_tables_menu(self) -> str:
+        for index, table in enumerate(self.list_tables()):
+            index += 1
+            if table.availability == True:
+                print(f"{table} Spauskite --{index}-- jei norite rezervuoti si stala.")
+                index -= 1
+        print()
+        print("Press --9-- if you want to go back to main menu.")
 
     def __str__(self) -> str:
         return headline_name_terminal_style(
@@ -137,9 +135,13 @@ restaurant_tables = {
 
 os.system("cls")
 jazz_place.add_table("two_seater")
-restaurant_tables["two_seater"].pop()
+restaurant_tables["two_seater"].pop(0)
 jazz_place.add_table("four_seater")
-restaurant_tables["four_seater"].pop()
+restaurant_tables["four_seater"].pop(0)
+jazz_place.add_table("family_seater")
+restaurant_tables["family_seater"].pop(0)
+jazz_place.add_table("two_seater")
+restaurant_tables["two_seater"].pop(0)
 print(jazz_place)
 
 
@@ -157,13 +159,13 @@ while True:
     elif user_option == "2":
         os.system("cls")
         print(jazz_place)
-        print(jazz_place.list_tables())
+        user_option = jazz_place.available_tables_menu()
 
     elif user_option == "3":
         os.system("cls")
         print(jazz_place)
         jazz_place.reserve_table(1)
-        jazz_place.reserve_table(4)
+        # jazz_place.reserve_table(4)
 
     elif user_option == "4":
         os.system("cls")
